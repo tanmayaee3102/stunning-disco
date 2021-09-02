@@ -96,6 +96,9 @@ const Product = (props) => {
           <h4 className="card-title product__title">
             <Link to={`/products/${uniq_id}`}>{product_name}</Link>
           </h4>
+          <h6 className="product__price">
+            <del>${formatMoney(retail_price)}</del>
+          </h6>
           <h5 className="product__price">${formatMoney(discounted_price)}</h5>
           {/* <p className="card-text product__description">{description}</p> */}
           <button

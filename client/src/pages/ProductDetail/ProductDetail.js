@@ -11,8 +11,8 @@ const ProductDetail = (props) => {
         <div className="container" style={{padding: '6rem 0'}}>
             <div className="card">
                 <div className="row">
-                    <ProductSlider image={props.product.image}/>
-                    <ProductDetailComponent product={props.product}/>
+                    {/* <ProductSlider image={props.product.image}/> */}
+                    {/* <ProductDetailComponent product={props.product}/> */}
                 </div>
             </div>
         </div>

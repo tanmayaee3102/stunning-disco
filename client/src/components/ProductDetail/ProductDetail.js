@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from "react";
 import {connect} from 'react-redux';
 import {formatMoney} from "../../pipes/priceFormatter";
 import {addProductToCart} from "../../actions";
@@ -16,6 +16,7 @@ const ProductDetail = (props) => {
       overall_rating,
       brand,
     } = props.product;
+  
 
 
     const onCart = () => {
@@ -43,6 +44,8 @@ const ProductDetail = (props) => {
             <dt>Brand</dt>
             <dd className="text-capitalize">{brand}</dd>
           </dl>
+
+
           {/* <dl className="param param-feature">
             <dt>Size</dt>
             <dd>{size}</dd>
