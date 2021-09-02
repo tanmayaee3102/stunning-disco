@@ -11,16 +11,26 @@ import {addProductToCart} from "../../actions";
 
 const Product = (props) => {
 
-    const {
-        title,
-        price,
-        images,
-        description,
-        id,
-    } = props.product;
+    // const {
+    //     title,
+    //     price,
+    //     images,
+    //     description,
+    //     id,
+    // } = props.product;
+
+    const { uniq_id,
+    product_name,
+    retail_price,
+    discounted_price,
+    image,
+    description,
+    product_rating,
+    overall_rating,
+    brand } = props.product;
 
     const imageRef = React.createRef();
-    const [img, setImg] = useState(images[0]);
+    const [img, setImg] = useState(image[0]);
     const [aItem, setAItem] = useState(0);
 
 
@@ -38,7 +48,7 @@ const Product = (props) => {
 
         // console.dir(imageRef.current);
 
-        const part = imageRef.current.clientWidth / images.length;
+        const part = imageRef.current.clientWidth / image.length;
        // console.log(Math.ceil(currentX / part) - 1);
 
         let imgIndex = Math.ceil(currentX / part) - 1;
@@ -46,47 +56,58 @@ const Product = (props) => {
             imgIndex = 0;
         }
 
-        if (imgIndex >= images.length) {
-            imgIndex = images.length - 1;
+        if (imgIndex >= image.length) {
+          imgIndex = image.length - 1;
         }
         setAItem(imgIndex);
-        setImg(images[imgIndex]);
+        setImg(image[imgIndex]);
     };
 
     const handleMouseOut = (e) => {
-        setImg(images[0]);
+        setImg(image[0]);
         setAItem(0);
     };
 
     const changeImage = (i) => {
-        setImg(images[i]);
+        setImg(image[i]);
         setAItem(i);
     }
 
     return (
-        <div className="card h-100 product">
-            <Link to={`/products/${id}`} className="product__link"><img
-                onMouseMove={handleImageChange}
-                onMouseOut={handleMouseOut}
-                onTouchMove={handleImageChange}
-                onTouchEnd={handleMouseOut}
-                className="card-img-top product__img" src={img} alt={title} ref={imageRef}/>
-                <SlideDots len={images.length} activeItem={aItem} changeItem={changeImage}/>
-            </Link>
-            <div className="card-body product__text">
-                <h4 className="card-title product__title">
-                    <Link to={`/products/${id}`}>{title}</Link>
-                </h4>
-                <h5 className="product__price">${formatMoney(price)}</h5>
-                <p className="card-text product__description">{description}</p>
-                <button
-                    onClick={() => {
-                        props.dispatch(addProductToCart({...props.product}))
-                    }}
-                    className="btn btn-info product__add-to-cart">Add to cart
-                </button>
-            </div>
+      <div className="card h-100 product">
+        <Link to={`/products/${uniq_id}`} className="product__link">
+          <img
+            onMouseMove={handleImageChange}
+            onMouseOut={handleMouseOut}
+            onTouchMove={handleImageChange}
+            onTouchEnd={handleMouseOut}
+            className="card-img-top product__img"
+            src={img}
+            alt={product_name}
+            ref={imageRef}
+          />
+          <SlideDots
+            len={image.length}
+            activeItem={aItem}
+            changeItem={changeImage}
+          />
+        </Link>
+        <div className="card-body product__text">
+          <h4 className="card-title product__title">
+            <Link to={`/products/${uniq_id}`}>{product_name}</Link>
+          </h4>
+          <h5 className="product__price">${formatMoney(discounted_price)}</h5>
+          {/* <p className="card-text product__description">{description}</p> */}
+          <button
+            onClick={() => {
+              props.dispatch(addProductToCart({ ...props.product }));
+            }}
+            className="btn btn-info product__add-to-cart"
+          >
+            Add to cart
+          </button>
         </div>
+      </div>
     );
 };
 

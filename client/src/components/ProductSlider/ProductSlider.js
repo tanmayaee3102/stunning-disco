@@ -4,11 +4,11 @@ import './ProductSlider.scss';
 
 const ProductSlider = (
     {
-        images
+        image
     }
 ) => {
     const imageRef = React.createRef();
-    const [img, setImg] = useState(images[0]);
+    const [img, setImg] = useState(image[0]);
     const [aItem, setAItem] = useState(0);
 
 
@@ -17,7 +17,7 @@ const ProductSlider = (
 
         console.dir(imageRef.current);
 
-        const part = imageRef.current.clientWidth / images.length;
+        const part = imageRef.current.clientWidth / image.length;
         console.log(Math.ceil(currentX / part) - 1);
 
         let imgIndex = Math.ceil(currentX / part) - 1;
@@ -25,20 +25,20 @@ const ProductSlider = (
             imgIndex = 0;
         }
 
-        if (imgIndex >= images.length) {
-            imgIndex = images.length - 1;
+        if (imgIndex >= image.length) {
+            imgIndex = image.length - 1;
         }
         setAItem(imgIndex);
-        setImg(images[imgIndex]);
+        setImg(image[imgIndex]);
     };
 
     const handleMouseOut = (e) => {
-        setImg(images[0]);
+        setImg(image[0]);
         setAItem(0);
     };
 
     const changeImage = (i) => {
-        setImg(images[i]);
+        setImg(image[i]);
         setAItem(i);
     }
 
@@ -57,7 +57,7 @@ const ProductSlider = (
                     /></a></div>
                 </div>
                 <div className="img-small-wrap">
-                    {images.map((img , i ) => (
+                    {image.map((img , i ) => (
                         <div className="item-gallery" onClick={() => {changeImage(i)}}><img src={img}/></div>
                     ))}
                 </div>

@@ -77,9 +77,11 @@ class ProductList extends Component {
                 <div className="row">
                     {paginationPipe(this.props.products, this.state).map(product =>{
                         let classes = `${this.state.colValue} col-md-6 mb-4`;
-                        return (<div className={classes}>
-                            <Product key={product.id} product={product} />
-                        </div>)
+                        return (
+                          <div className={classes}>
+                            <Product key={product.uniq_id} product={product} />
+                          </div>
+                        );
                     })}
                 </div>
                 <div className="d-flex justify-content-end">

@@ -1,1 +1,9 @@
-export const brands = ["apple","huawei","meizu","samsung","vestel","xiaomi","asus"];
+export const brands = [
+  "Alisha",
+  "FabHomeDecor",
+  "AW",
+  "Sicons",
+  "Eternal Gandhi",
+  "dilli bazaaar",
+  "Ladela",
+];

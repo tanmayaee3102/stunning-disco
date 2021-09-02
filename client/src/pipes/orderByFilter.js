@@ -4,8 +4,12 @@ export const orderByFilter = (arr, type ) => {
     if(!type) return arr;
     console.log('orderbYmethod', type);
     if(type === 'asc') {
-        return arr.slice().sort((el1, el2) => el1.price - el2.price);
+        return arr
+          .slice()
+          .sort((el1, el2) => el1.discounted_price - el2.discounted_price);
     } else {
-        return arr.slice().sort((el1, el2) => el2.price - el1.price);
+        return arr
+          .slice()
+          .sort((el1, el2) => el2.discounted_price - el1.discounted_price);
     }
 };

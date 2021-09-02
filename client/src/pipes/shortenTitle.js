@@ -1,3 +1,3 @@
-export const shortenTitle = (title) => {
-    return title.split(' (')[0];
+export const shortenTitle = (product_name) => {
+  return product_name.split(" (")[0];
 };
