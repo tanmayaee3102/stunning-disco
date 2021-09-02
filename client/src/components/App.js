@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
-import Header from './Header';
-import Landing from './Landing';
-import Dashboard from './Dashboard';
-import SurveyNew from './surveys/SurveyNew';
+import Home from "../pages/Home/Home";
+import Header from "./Header/Header";
+import Footer from "./Footer/Footer";
+import ProductDetail from "../pages/ProductDetail/ProductDetail";
+import ShoppingCart from "../pages/ShopingCart/ShoppingCart";
+
+
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 
 class App extends Component {
   componentDidMount() {
@@ -15,16 +18,30 @@ class App extends Component {
 
   render() {
     return (
-      <div className="container">
-        <BrowserRouter>
-          <div>
+      <BrowserRouter>
+        {/* <div>
             <Header />
             <Route exact path="/" component={Landing} />
             <Route exact path="/surveys" component={Dashboard} />
             <Route path="/surveys/new" component={SurveyNew} />
-          </div>
-        </BrowserRouter>
-      </div>
+          </div> */}
+        <React.Fragment>
+          <Header />
+          <Switch>
+            <Route
+              exact
+              path={"/"}
+              render={() => {
+                return <Redirect to={"/products"} />;
+              }}
+            />
+            <Route exact path={"/products"} component={Home} />
+            <Route exact path={"/products/:id"} component={ProductDetail} />
+            <Route exact patr={"/cart"} component={ShoppingCart} />
+          </Switch>
+          <Footer />
+        </React.Fragment>
+      </BrowserRouter>
     );
   }
 }
